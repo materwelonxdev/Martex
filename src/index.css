@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap");
+@import "tailwindcss";
+
+/* Colors are eyeballed from screenshots; verify with the DevTools color picker */
+@theme {
+  --font-heading: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-body: "Nunito Sans", system-ui, sans-serif;
+
+  --color-brand: #f5427f;
+  --color-brand-dark: #e12d6b;
+  --color-hero-from: #8f55e0;
+  --color-hero-to: #6f2fe0;
+  --color-ink: #2b2750;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-body);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+  /* keeps the sticky header from covering the section you scroll to */
+  section[id] {
+    scroll-margin-top: 72px;
+  }
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@layer components {
+  /* vertical padding of every home section: change these two numbers to tune the gap */
+  .section-y {
+    padding-block: 2.5rem;
+  }
+  @media (min-width: 1024px) {
+    .section-y {
+      padding-block: 3.5rem;
+    }
+  }
+}
+
+/* ==================================================================
+   BLUE THEME: applied to every page except Home (see Layout.jsx).
+   Turns the pink accent into the reference's blue (#1680fb).
+   To go back to pink everywhere, delete this whole block.
+================================================================== */
+.theme-blue {
+  --blue: #1680fb;
+  --blue-dark: #0f66d6;
+  --blue-07: rgba(22, 128, 251, 0.07);
+  --blue-10: rgba(22, 128, 251, 0.1);
+  --blue-15: rgba(22, 128, 251, 0.15);
+}
+
+/* solid backgrounds (buttons, badges, play buttons, number circles) */
+.theme-blue .bg-\[\#f5427f\],
+.theme-blue .bg-brand {
+  background-color: var(--blue);
+}
+.theme-blue .hover\:bg-\[\#e12d6b\]:hover,
+.theme-blue .hover\:bg-brand-dark:hover {
+  background-color: var(--blue-dark);
+}
+
+/* text and icon colors, link hovers */
+.theme-blue .text-\[\#f5427f\],
+.theme-blue .text-brand {
+  color: var(--blue);
+}
+.theme-blue .hover\:text-\[\#f5427f\]:hover,
+.theme-blue .hover\:text-brand:hover {
+  color: var(--blue);
+}
+
+/* soft tints behind icons */
+.theme-blue .bg-\[\#f5427f\]\/10 {
+  background-color: var(--blue-10);
+}
+.theme-blue .bg-\[\#f5427f\]\/15 {
+  background-color: var(--blue-15);
+}
+.theme-blue .bg-\[\#f5427f\]\/\[0\.07\] {
+  background-color: var(--blue-07);
+}
+
+/* form focus rings and borders */
+.theme-blue .ring-\[\#f5427f\],
+.theme-blue .focus\:ring-\[\#f5427f\]:focus {
+  --tw-ring-color: var(--blue);
+}
+.theme-blue .focus\:border-\[\#f5427f\]:focus {
+  border-color: var(--blue);
+}
+
+/* SVG strokes such as the check marks */
+.theme-blue [stroke="#f5427f"] {
+  stroke: var(--blue);
+}
